@@ -1,0 +1,6 @@
+<h2>File Upload</h2>
+
+<form action="/upload" ng-upload="completed(content)">
+	<label for="file">Please upload a CSV file:</label>
+	<input type="file" name="file" id="file" onchange="angular.element(this).scope().parseFile(this.files)" />
+</form>

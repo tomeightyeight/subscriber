@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" ng-app="Subscriber">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="Content-Language" content="en">
+		<meta http-equiv="cleartype" content="on">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title>Subscriber</title>
+		<link rel="icon" type="image/x-icon" href="/public/favicon.ico" />
+		
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,700,300' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="/public/css/styles.css">
+				
+		<script src="/public/js/vendor/angular/angular.min.js"></script>
+		<script src="/public/js/vendor/angular/angular-route.min.js"></script>
+	</head>
+	
+	<body>
+		<div class="wrapper">
+			<div class="container-main" ng-controller="mainController">
+				<nav>
+					<ul>
+						<li><a href="#/">Home</a></li>
+						<li><a href="#/view">View</a></li>
+						<li><a href="#/upload">Upload</a></li>
+					</ul>
+				</nav>
+				
+				<h1>Email Subscribers Technical Task</h1>
+				
+				<div class="container-subview" ng-view></div>
+			</div>
+		</div>
+		
+		<script src="/public/js/built/app.min.js"></script>
+	</body>
+</html>
