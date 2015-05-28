@@ -1,4 +1,4 @@
 // Main Controller
-app.controller('mainController', function($scope, $http) {	
+app.controller('mainController', ['$scope', function($scope) {	
 
-});
+}]);

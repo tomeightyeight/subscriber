@@ -4,7 +4,7 @@ body {
   color: #666;
   padding: 20px 40px;
 }
-div.container-main > h1 {
+div.wrapper > h1 {
   float: right;
   margin-top: 0;
 }

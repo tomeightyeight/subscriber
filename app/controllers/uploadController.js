@@ -1,5 +1,5 @@
 // Upload CSV controller
-app.controller('uploadController', function($scope, $http) {
+app.controller('uploadController', ['$scope', function($scope) {
 	$scope.headings = [];
 	$scope.records = [];
 	
@@ -28,7 +28,7 @@ app.controller('uploadController', function($scope, $http) {
 		
 		// Using closures and anonymous self invoking function
 		// so that we can use scope with the File Reader API
-		reader.onloadend = (function($scope, dataService) {
+		reader.onloadend = (function($scope) {
 			return function(file) {				
 				var content = file.target.result;
 				
@@ -41,15 +41,16 @@ app.controller('uploadController', function($scope, $http) {
 				
 				// Extract records (split columns at comma)
 				rows.forEach(function(item, index) {					
-					var record = Helper.toObject(item.split(/,/));
-					$scope.records.push(record);
+					var split = item.split(/,/);
+					
+					var recordObj = {};
+					split.forEach(function(item, index) {
+						var propertyName = $scope.headings[index];
+						recordObj[propertyName] = item;
+					});
+					
+					$scope.records.push(recordObj);
 				});
-				
-				// Emit file-upload event on completion of parsing
-				/*$scope.$broadcast('file-upload', {
-					headings: $scope.headings,
-					records: $scope.records
-				});*/
 				
 				console.log($scope.headings, $scope.records);
 			}
@@ -57,4 +58,4 @@ app.controller('uploadController', function($scope, $http) {
 			
 		reader.readAsText($scope.file);
 	};
-});
+}]);
