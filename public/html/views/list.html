@@ -1,0 +1,11 @@
+<h2>Email Subscribers List</h2>
+<p>There are currently no records to display. You must first <a href="/#/upload">upload</a> a CSV file.</p>
+
+<table>
+	<thead>
+		<th ng-repeat="heading in headings">{{heading}}</th>
+	</thead>
+	<tbody>
+		<tr ng-repeat="record in records">{{record}}</tr>
+	</tbody>
+</table>

@@ -10,7 +10,7 @@ app.controller('uploadController', function($scope, $http) {
 		return (valid.indexOf(ext) !== false) ? true : false;
 	};
 	
-	// Parse file and convert to HTML for ouput
+	// Parse CSV file
 	$scope.parseFile = function(files) {
 		var reader = new FileReader();
 		
@@ -26,9 +26,9 @@ app.controller('uploadController', function($scope, $http) {
 			return false;
 		}
 		
-		// Using closures and anonymous self invoking functions 
+		// Using closures and anonymous self invoking function
 		// so that we can use scope with the File Reader API
-		reader.onloadend = (function($scope) {
+		reader.onloadend = (function($scope, dataService) {
 			return function(file) {				
 				var content = file.target.result;
 				
@@ -36,21 +36,22 @@ app.controller('uploadController', function($scope, $http) {
 				var rows = content.split(/\n/);
 				
 				// Extract headings (split columns at comma)
-				$scope.headings.push(rows[0].split(/,/));
+				$scope.headings = Helper.toObject(rows[0].split(/,/));
 				rows.shift();
 				
 				// Extract records (split columns at comma)
-				rows.forEach(function(item) {
-					$scope.records.push(item.split(/,/));
+				rows.forEach(function(item, index) {					
+					var record = Helper.toObject(item.split(/,/));
+					$scope.records.push(record);
 				});
 				
-				// Emit file-upload event on completion of parsing	
-				$scope.$broadcast('file-upload', {
+				// Emit file-upload event on completion of parsing
+				/*$scope.$broadcast('file-upload', {
 					headings: $scope.headings,
 					records: $scope.records
-				});
+				});*/
 				
-				console.log($scope.headings);
+				console.log($scope.headings, $scope.records);
 			}
 		})($scope);
 			
