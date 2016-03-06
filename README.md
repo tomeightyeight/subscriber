@@ -1,5 +1,5 @@
 # subscriber
-Email Subscribers CSV Parser
+Mailing List CSV Parser
 
 First Angular app i've built (usually work with Backbone so a bit of a learning experiance). 
 
